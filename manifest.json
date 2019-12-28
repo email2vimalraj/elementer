@@ -1,0 +1,24 @@
+{
+  "name": "Elementer",
+  "version": "1.0.0",
+  "description": "Elementer",
+  "author": "Vimalraj Selvam",
+  "manifest_version": 2,
+  "devtools_page": "devtools.html",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "file://*/*",
+    "storage",
+    "unlimitedStorage"
+  ],
+  "icons": {
+    "16": "assets/favicon-16x16.png",
+    "32": "assets/favicon-32x32.png",
+    "48": "assets/favicon-32x32.png"
+  }
+}

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Elementer</title>
+
+    <link rel="stylesheet" href="./assets/bootstrap-4.4.1.min.css" />
+  </head>
+  <body>
+    <section class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a id="brandName" class="navbar-brand" href="#"><img src="assets/favicon-32x32.png" alt="Elementer" /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li id="showPageObjectListBtn" class="nav-item">
+              <a class="nav-link" href="#">Show Page Objects</a>
+            </li>
+            <li id="pageObjectListBtn" class="nav-item">
+              <a class="nav-link" href="#">Create Page Object</a>
+            </li>
+            <li id="importJsonBtn" class="nav-item">
+              <a class="nav-link" href="#">Import Json</a>
+            </li>
+          </ul>
+
+          <span class="navbar-text" id="elementer-version"></span>
+        </div>
+      </nav>
+
+      <section id="pageObjectListSection" class="row" style="margin-top: 80px;">
+        <ul id="pageObjectList"></ul>
+      </section>
+
+      <!-- START: Add Page Object Form -->
+      <form id="addPageObjectSection" style="margin-top: 80px; display: none;">
+        <input type="hidden" id="pageObjectOd" />
+
+        <div id="pageObjectDiv" class="form-group row">
+          <label for="pageObjectName" class="col-sm-2 col-form-label"
+            >Page Name <span class="text-danger">*</span></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              id="pageObjectName"
+              class="form-control"
+              aria-describedby="pageObjectHelpBlock"
+            />
+            <span id="pageObjectHelpBlock" class="form-text text-muted"
+              >Name should start with Capital Letter. Should not be empty. No
+              spaces allowed.</span
+            >
+          </div>
+        </div>
+
+        <div id="defaultLocaleDiv" class="form-group row">
+          <label for="defaultLocale" class="col-sm-2 col-form-label"
+            >Fallback Locale <span class="text-danger">*</span></label
+          >
+          <div class="col-sm-10">
+            <select
+              name="defaultLocale"
+              id="defaultLocale"
+              class="form-control"
+            >
+              <option value="">Select Fallback Locale</option>
+              <option value="ar">ar - Arabic</option>
+              <option value="ar_AE"
+                >ar_AE - Arabic (United Arab Emirates)</option
+              >
+              <option value="ar_BH">ar_BH - Arabic (Bahrain)</option>
+              <option value="ar_DZ">ar_DZ - Arabic (Algeria)</option>
+              <option value="ar_EG">ar_EG - Arabic (Egypt)</option>
+              <option value="ar_IQ">ar_IQ - Arabic (Iraq)</option>
+              <option value="ar_JO">ar_JO - Arabic (Jordan)</option>
+              <option value="ar_KW">ar_KW - Arabic (Kuwait)</option>
+              <option value="ar_LB">ar_LB - Arabic (Lebanon)</option>
+              <option value="ar_LY">ar_LY - Arabic (Libya)</option>
+              <option value="ar_MA">ar_MA - Arabic (Morocco)</option>
+              <option value="ar_OM">ar_OM - Arabic (Oman)</option>
+              <option value="ar_QA">ar_QA - Arabic (Qatar)</option>
+              <option value="ar_SA">ar_SA - Arabic (Saudi Arabia)</option>
+              <option value="ar_SD">ar_SD - Arabic (Sudan)</option>
+              <option value="ar_SY">ar_SY - Arabic (Syria)</option>
+              <option value="ar_TN">ar_TN - Arabic (Tunisia)</option>
+              <option value="ar_YE">ar_YE - Arabic (Yemen)</option>
+              <option value="be">be - Belarusian</option>
+              <option value="be_BY">be_BY - Belarusian (Belarus)</option>
+              <option value="bg">bg - Bulgarian</option>
+              <option value="bg_BG">bg_BG - Bulgarian (Bulgaria)</option>
+              <option value="ca">ca - Catalan</option>
+              <option value="ca_ES">ca_ES - Catalan (Spain)</option>
+              <option value="cs">cs - Czech</option>
+              <option value="cs_CZ">cs_CZ - Czech (Czech Republic)</option>
+              <option value="da">da - Danish</option>
+              <option value="da_DK">da_DK - Danish (Denmark)</option>
+              <option value="de">de - German</option>
+              <option value="de_AT">de_AT - German (Austria)</option>
+              <option value="de_CH">de_CH - German (Switzerland)</option>
+              <option value="de_DE">de_DE - German (Germany)</option>
+              <option value="de_GR">de_GR - German (Greece)</option>
+              <option value="de_LU">de_LU - German (Luxembourg)</option>
+              <option value="el">el - Greek</option>
+              <option value="el_CY">el_CY - Greek (Cyprus)</option>
+              <option value="el_GR">el_GR - Greek (Greece)</option>
+              <option value="en">en - English</option>
+              <option value="en_AU">en_AU - English (Australia)</option>
+              <option value="en_CA">en_CA - English (Canada)</option>
+              <option value="en_GB">en_GB - English (United Kingdom)</option>
+              <option value="en_IE">en_IE - English (Ireland)</option>
+              <option value="en_IN">en_IN - English (India)</option>
+              <option value="en_MT">en_MT - English (Malta)</option>
+              <option value="en_NZ">en_NZ - English (New Zealand)</option>
+              <option value="en_PH">en_PH - English (Philippines)</option>
+              <option value="en_SG">en_SG - English (Singapore)</option>
+              <option value="en_US">en_US - English (United States)</option>
+              <option value="en_ZA">en_ZA - English (South Africa)</option>
+              <option value="es">es - Spanish</option>
+              <option value="es_AR">es_AR - Spanish (Argentina)</option>
+              <option value="es_BO">es_BO - Spanish (Bolivia)</option>
+              <option value="es_CL">es_CL - Spanish (Chile)</option>
+              <option value="es_CO">es_CO - Spanish (Colombia)</option>
+              <option value="es_CR">es_CR - Spanish (Costa Rica)</option>
+              <option value="es_CU">es_CU - Spanish (Cuba)</option>
+              <option value="es_DO"
+                >es_DO - Spanish (Dominican Republic)</option
+              >
+              <option value="es_EC">es_EC - Spanish (Ecuador)</option>
+              <option value="es_ES">es_ES - Spanish (Spain)</option>
+              <option value="es_GT">es_GT - Spanish (Guatemala)</option>
+              <option value="es_HN">es_HN - Spanish (Honduras)</option>
+              <option value="es_MX">es_MX - Spanish (Mexico)</option>
+              <option value="es_NI">es_NI - Spanish (Nicaragua)</option>
+              <option value="es_PA">es_PA - Spanish (Panama)</option>
+              <option value="es_PE">es_PE - Spanish (Peru)</option>
+              <option value="es_PR">es_PR - Spanish (Puerto Rico)</option>
+              <option value="es_PY">es_PY - Spanish (Paraguay)</option>
+              <option value="es_SV">es_SV - Spanish (El Salvador)</option>
+              <option value="es_US">es_US - Spanish (United States)</option>
+              <option value="es_UY">es_UY - Spanish (Uruguay)</option>
+              <option value="es_VE">es_VE - Spanish (Venezuela)</option>
+              <option value="et">et - Estonian</option>
+              <option value="et_EE">et_EE - Estonian (Estonia)</option>
+              <option value="fi">fi - Finnish</option>
+              <option value="fi_FI">fi_FI - Finnish (Finland)</option>
+              <option value="fr">fr - French</option>
+              <option value="fr_BE">fr_BE - French (Belgium)</option>
+              <option value="fr_CA">fr_CA - French (Canada)</option>
+              <option value="fr_CH">fr_CH - French (Switzerland)</option>
+              <option value="fr_FR">fr_FR - French (France)</option>
+              <option value="fr_LU">fr_LU - French (Luxembourg)</option>
+              <option value="ga">ga - Irish</option>
+              <option value="ga_IE">ga_IE - Irish (Ireland)</option>
+              <option value="hi">hi - Hindi</option>
+              <option value="hi_IN">hi_IN - Hindi (India)</option>
+              <option value="hr">hr - Croatian</option>
+              <option value="hr_HR">hr_HR - Croatian (Croatia)</option>
+              <option value="hu">hu - Hungarian</option>
+              <option value="hu_HU">hu_HU - Hungarian (Hungary)</option>
+              <option value="in">in - Indonesian</option>
+              <option value="in_ID">in_ID - Indonesian (Indonesia)</option>
+              <option value="is">is - Icelandic</option>
+              <option value="is_IS">is_IS - Icelandic (Iceland)</option>
+              <option value="it">it - Italian</option>
+              <option value="it_CH">it_CH - Italian (Switzerland)</option>
+              <option value="it_IT">it_IT - Italian (Italy)</option>
+              <option value="iw">iw - Hebrew</option>
+              <option value="iw_IL">iw_IL - Hebrew (Israel)</option>
+              <option value="ja">ja - Japanese</option>
+              <option value="ja_JP">ja_JP - Japanese (Japan)</option>
+              <option value="ja_JP_JP_#u-ca-japanese"
+                >ja_JP_JP_#u-ca-japanese - Japanese (Japan,JP)</option
+              >
+              <option value="ko">ko - Korean</option>
+              <option value="ko_KR">ko_KR - Korean (South Korea)</option>
+              <option value="lt">lt - Lithuanian</option>
+              <option value="lt_LT">lt_LT - Lithuanian (Lithuania)</option>
+              <option value="lv">lv - Latvian</option>
+              <option value="lv_LV">lv_LV - Latvian (Latvia)</option>
+              <option value="mk">mk - Macedonian</option>
+              <option value="mk_MK">mk_MK - Macedonian (Macedonia)</option>
+              <option value="ms">ms - Malay</option>
+              <option value="ms_MY">ms_MY - Malay (Malaysia)</option>
+              <option value="mt">mt - Maltese</option>
+              <option value="mt_MT">mt_MT - Maltese (Malta)</option>
+              <option value="nl">nl - Dutch</option>
+              <option value="nl_BE">nl_BE - Dutch (Belgium)</option>
+              <option value="nl_NL">nl_NL - Dutch (Netherlands)</option>
+              <option value="no">no - Norwegian</option>
+              <option value="no_NO">no_NO - Norwegian (Norway)</option>
+              <option value="no_NO_NY"
+                >no_NO_NY - Norwegian (Norway,Nynorsk)</option
+              >
+              <option value="pl">pl - Polish</option>
+              <option value="pl_PL">pl_PL - Polish (Poland)</option>
+              <option value="pt">pt - Portuguese</option>
+              <option value="pt_BR">pt_BR - Portuguese (Brazil)</option>
+              <option value="pt_PT">pt_PT - Portuguese (Portugal)</option>
+              <option value="ro">ro - Romanian</option>
+              <option value="ro_RO">ro_RO - Romanian (Romania)</option>
+              <option value="ru">ru - Russian</option>
+              <option value="ru_RU">ru_RU - Russian (Russia)</option>
+              <option value="sk">sk - Slovak</option>
+              <option value="sk_SK">sk_SK - Slovak (Slovakia)</option>
+              <option value="sl">sl - Slovenian</option>
+              <option value="sl_SI">sl_SI - Slovenian (Slovenia)</option>
+              <option value="sq">sq - Albanian</option>
+              <option value="sq_AL">sq_AL - Albanian (Albania)</option>
+              <option value="sr">sr - Serbian</option>
+              <option value="sr__#Latn">sr__#Latn - Serbian (Latin)</option>
+              <option value="sr_BA"
+                >sr_BA - Serbian (Bosnia and Herzegovina)</option
+              >
+              <option value="sr_BA_#Latn"
+                >sr_BA_#Latn - Serbian (Latin,Bosnia and Herzegovina)</option
+              >
+              <option value="sr_CS"
+                >sr_CS - Serbian (Serbia and Montenegro)</option
+              >
+              <option value="sr_ME">sr_ME - Serbian (Montenegro)</option>
+              <option value="sr_ME_#Latn"
+                >sr_ME_#Latn - Serbian (Latin,Montenegro)</option
+              >
+              <option value="sr_RS">sr_RS - Serbian (Serbia)</option>
+              <option value="sr_RS_#Latn"
+                >sr_RS_#Latn - Serbian (Latin,Serbia)</option
+              >
+              <option value="sv">sv - Swedish</option>
+              <option value="sv_SE">sv_SE - Swedish (Sweden)</option>
+              <option value="th">th - Thai</option>
+              <option value="th_TH">th_TH - Thai (Thailand)</option>
+              <option value="th_TH_TH_#u-nu-thai"
+                >th_TH_TH_#u-nu-thai - Thai (Thailand,TH)</option
+              >
+              <option value="tr">tr - Turkish</option>
+              <option value="tr_TR">tr_TR - Turkish (Turkey)</option>
+              <option value="uk">uk - Ukrainian</option>
+              <option value="uk_UA">uk_UA - Ukrainian (Ukraine)</option>
+              <option value="vi">vi - Vietnamese</option>
+              <option value="vi_VN">vi_VN - Vietnamese (Vietnam)</option>
+              <option value="zh">zh - Chinese</option>
+              <option value="zh_CN">zh_CN - Chinese (China)</option>
+              <option value="zh_HK">zh_HK - Chinese (Hong Kong)</option>
+              <option value="zh_SG">zh_SG - Chinese (Singapore)</option>
+              <option value="zh_TW">zh_TW - Chinese (Taiwan)</option>
+            </select>
+            <span class="form-text text-muted"
+              >When locale for element is not set, this will act as fallback
+              locale. Mandatory.</span
+            >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="offset-lg-3 col-lg-9">
+            <button class="btn btn-primary" id="addPageObjectBtn" type="button">
+              Add Page Object
+            </button>
+            <button
+              class="btn btn-success"
+              id="updatePageObjectBtn"
+              type="button"
+            >
+              Update Page Object
+            </button>
+          </div>
+        </div>
+      </form>
+      <!-- END: Add Page Object Form -->
+
+      <!-- START: Add Element Form -->
+      <div id="addElementSection" style="margin-top: 80px">
+        <input type="hidden" id="elementPageObjectId" />
+
+        <div class="form-group row align-items-center">
+          <button
+            class="btn btn-info mr-2"
+            id="inspectElement"
+            aria-describedby="inspectButtonHelpBlock"
+          >
+            Inspect
+          </button>
+          <small id="inspectButtonHelpBlock" class="text-muted"
+            >After inspect press ESC button to turn off inspection.</small
+          >
+        </div>
+
+        <div
+          id="element-success-alert"
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          Element Added Successfully
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div
+          id="element-danger-alert"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          Problem in adding element. Try again!!!
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div id="attributeEmptyDiv" class="row" style="display: none">
+          <div class="col-sm-4 col-lg-8">
+            <p class="text-danger">
+              <strong>ERROR:</strong> Selected attribute is empty!
+            </p>
+          </div>
+        </div>
+
+        <div id="htmlElementErrorDiv" class="row" style="display:none">
+          <div class="col-sm-4 col-lg-8">
+            <p class="text-danger">
+              <strong>ERROR:</strong> Element name should suffix with any one of
+              the following: 'TextField', 'TextArea', 'Label', 'SelectList',
+              'RadioButton', 'Button', 'Link', 'Image', 'CheckBox'
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="container row mt-3 form-inline">
+          <div class="col-lg-6 form-group">
+            <label for="elementPageObjectName">Page Name</label>
+            <input
+              type="text"
+              id="elementPageObjectName"
+              class="form-control"
+              disabled
+            />
+          </div>
+
+          <div id="pageElementVariableDiv" class="col-lg-6 form-group mt-2">
+            <label for="elementPageObjectName" class="col-form-label"
+              >Element Name <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              id="pageElementName"
+              class="form-control"
+              aria-describedby="pageElementHelpBlock"
+            />
+            <small id="pageElementHelpBlock" class="text-muted"
+              >Variable should use camelCase. Should not be empty. No spaces
+              allowed.</small
+            >
+          </div>
+        </div> -->
+
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="elementPageObjectName">Page Name</label>
+              <input
+                type="text"
+                id="elementPageObjectName"
+                class="form-control"
+                disabled
+              />
+            </div>
+
+            <div class="form-group col-md-6" id="pageElementVariableDiv">
+              <label for="pageElementName"
+                >Element Name <small class="text-danger">*</small></label
+              >
+              <input
+                type="text"
+                id="pageElementName"
+                class="form-control"
+                aria-describedby="pageElementHelpBlock"
+              />
+              <small id="pageElementHelpBlock" class="text-muted"
+                >Variable should use camelCase. Should not be empty. No spaces
+                allowed.</small
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="locale">Locale</label>
+              <select name="locale" id="locale" class="form-control">
+                <option value="ar">ar - Arabic</option>
+                <option value="ar_AE"
+                  >ar_AE - Arabic (United Arab Emirates)</option
+                >
+                <option value="ar_BH">ar_BH - Arabic (Bahrain)</option>
+                <option value="ar_DZ">ar_DZ - Arabic (Algeria)</option>
+                <option value="ar_EG">ar_EG - Arabic (Egypt)</option>
+                <option value="ar_IQ">ar_IQ - Arabic (Iraq)</option>
+                <option value="ar_JO">ar_JO - Arabic (Jordan)</option>
+                <option value="ar_KW">ar_KW - Arabic (Kuwait)</option>
+                <option value="ar_LB">ar_LB - Arabic (Lebanon)</option>
+                <option value="ar_LY">ar_LY - Arabic (Libya)</option>
+                <option value="ar_MA">ar_MA - Arabic (Morocco)</option>
+                <option value="ar_OM">ar_OM - Arabic (Oman)</option>
+                <option value="ar_QA">ar_QA - Arabic (Qatar)</option>
+                <option value="ar_SA">ar_SA - Arabic (Saudi Arabia)</option>
+                <option value="ar_SD">ar_SD - Arabic (Sudan)</option>
+                <option value="ar_SY">ar_SY - Arabic (Syria)</option>
+                <option value="ar_TN">ar_TN - Arabic (Tunisia)</option>
+                <option value="ar_YE">ar_YE - Arabic (Yemen)</option>
+                <option value="be">be - Belarusian</option>
+                <option value="be_BY">be_BY - Belarusian (Belarus)</option>
+                <option value="bg">bg - Bulgarian</option>
+                <option value="bg_BG">bg_BG - Bulgarian (Bulgaria)</option>
+                <option value="ca">ca - Catalan</option>
+                <option value="ca_ES">ca_ES - Catalan (Spain)</option>
+                <option value="cs">cs - Czech</option>
+                <option value="cs_CZ">cs_CZ - Czech (Czech Republic)</option>
+                <option value="da">da - Danish</option>
+                <option value="da_DK">da_DK - Danish (Denmark)</option>
+                <option value="de">de - German</option>
+                <option value="de_AT">de_AT - German (Austria)</option>
+                <option value="de_CH">de_CH - German (Switzerland)</option>
+                <option value="de_DE">de_DE - German (Germany)</option>
+                <option value="de_GR">de_GR - German (Greece)</option>
+                <option value="de_LU">de_LU - German (Luxembourg)</option>
+                <option value="el">el - Greek</option>
+                <option value="el_CY">el_CY - Greek (Cyprus)</option>
+                <option value="el_GR">el_GR - Greek (Greece)</option>
+                <option value="en">en - English</option>
+                <option value="en_AU">en_AU - English (Australia)</option>
+                <option value="en_CA">en_CA - English (Canada)</option>
+                <option value="en_GB">en_GB - English (United Kingdom)</option>
+                <option value="en_IE">en_IE - English (Ireland)</option>
+                <option value="en_IN">en_IN - English (India)</option>
+                <option value="en_MT">en_MT - English (Malta)</option>
+                <option value="en_NZ">en_NZ - English (New Zealand)</option>
+                <option value="en_PH">en_PH - English (Philippines)</option>
+                <option value="en_SG">en_SG - English (Singapore)</option>
+                <option value="en_US">en_US - English (United States)</option>
+                <option value="en_ZA">en_ZA - English (South Africa)</option>
+                <option value="es">es - Spanish</option>
+                <option value="es_AR">es_AR - Spanish (Argentina)</option>
+                <option value="es_BO">es_BO - Spanish (Bolivia)</option>
+                <option value="es_CL">es_CL - Spanish (Chile)</option>
+                <option value="es_CO">es_CO - Spanish (Colombia)</option>
+                <option value="es_CR">es_CR - Spanish (Costa Rica)</option>
+                <option value="es_CU">es_CU - Spanish (Cuba)</option>
+                <option value="es_DO"
+                  >es_DO - Spanish (Dominican Republic)</option
+                >
+                <option value="es_EC">es_EC - Spanish (Ecuador)</option>
+                <option value="es_ES">es_ES - Spanish (Spain)</option>
+                <option value="es_GT">es_GT - Spanish (Guatemala)</option>
+                <option value="es_HN">es_HN - Spanish (Honduras)</option>
+                <option value="es_MX">es_MX - Spanish (Mexico)</option>
+                <option value="es_NI">es_NI - Spanish (Nicaragua)</option>
+                <option value="es_PA">es_PA - Spanish (Panama)</option>
+                <option value="es_PE">es_PE - Spanish (Peru)</option>
+                <option value="es_PR">es_PR - Spanish (Puerto Rico)</option>
+                <option value="es_PY">es_PY - Spanish (Paraguay)</option>
+                <option value="es_SV">es_SV - Spanish (El Salvador)</option>
+                <option value="es_US">es_US - Spanish (United States)</option>
+                <option value="es_UY">es_UY - Spanish (Uruguay)</option>
+                <option value="es_VE">es_VE - Spanish (Venezuela)</option>
+                <option value="et">et - Estonian</option>
+                <option value="et_EE">et_EE - Estonian (Estonia)</option>
+                <option value="fi">fi - Finnish</option>
+                <option value="fi_FI">fi_FI - Finnish (Finland)</option>
+                <option value="fr">fr - French</option>
+                <option value="fr_BE">fr_BE - French (Belgium)</option>
+                <option value="fr_CA">fr_CA - French (Canada)</option>
+                <option value="fr_CH">fr_CH - French (Switzerland)</option>
+                <option value="fr_FR">fr_FR - French (France)</option>
+                <option value="fr_LU">fr_LU - French (Luxembourg)</option>
+                <option value="ga">ga - Irish</option>
+                <option value="ga_IE">ga_IE - Irish (Ireland)</option>
+                <option value="hi">hi - Hindi</option>
+                <option value="hi_IN">hi_IN - Hindi (India)</option>
+                <option value="hr">hr - Croatian</option>
+                <option value="hr_HR">hr_HR - Croatian (Croatia)</option>
+                <option value="hu">hu - Hungarian</option>
+                <option value="hu_HU">hu_HU - Hungarian (Hungary)</option>
+                <option value="in">in - Indonesian</option>
+                <option value="in_ID">in_ID - Indonesian (Indonesia)</option>
+                <option value="is">is - Icelandic</option>
+                <option value="is_IS">is_IS - Icelandic (Iceland)</option>
+                <option value="it">it - Italian</option>
+                <option value="it_CH">it_CH - Italian (Switzerland)</option>
+                <option value="it_IT">it_IT - Italian (Italy)</option>
+                <option value="iw">iw - Hebrew</option>
+                <option value="iw_IL">iw_IL - Hebrew (Israel)</option>
+                <option value="ja">ja - Japanese</option>
+                <option value="ja_JP">ja_JP - Japanese (Japan)</option>
+                <option value="ja_JP_JP_#u-ca-japanese"
+                  >ja_JP_JP_#u-ca-japanese - Japanese (Japan,JP)</option
+                >
+                <option value="ko">ko - Korean</option>
+                <option value="ko_KR">ko_KR - Korean (South Korea)</option>
+                <option value="lt">lt - Lithuanian</option>
+                <option value="lt_LT">lt_LT - Lithuanian (Lithuania)</option>
+                <option value="lv">lv - Latvian</option>
+                <option value="lv_LV">lv_LV - Latvian (Latvia)</option>
+                <option value="mk">mk - Macedonian</option>
+                <option value="mk_MK">mk_MK - Macedonian (Macedonia)</option>
+                <option value="ms">ms - Malay</option>
+                <option value="ms_MY">ms_MY - Malay (Malaysia)</option>
+                <option value="mt">mt - Maltese</option>
+                <option value="mt_MT">mt_MT - Maltese (Malta)</option>
+                <option value="nl">nl - Dutch</option>
+                <option value="nl_BE">nl_BE - Dutch (Belgium)</option>
+                <option value="nl_NL">nl_NL - Dutch (Netherlands)</option>
+                <option value="no">no - Norwegian</option>
+                <option value="no_NO">no_NO - Norwegian (Norway)</option>
+                <option value="no_NO_NY"
+                  >no_NO_NY - Norwegian (Norway,Nynorsk)</option
+                >
+                <option value="pl">pl - Polish</option>
+                <option value="pl_PL">pl_PL - Polish (Poland)</option>
+                <option value="pt">pt - Portuguese</option>
+                <option value="pt_BR">pt_BR - Portuguese (Brazil)</option>
+                <option value="pt_PT">pt_PT - Portuguese (Portugal)</option>
+                <option value="ro">ro - Romanian</option>
+                <option value="ro_RO">ro_RO - Romanian (Romania)</option>
+                <option value="ru">ru - Russian</option>
+                <option value="ru_RU">ru_RU - Russian (Russia)</option>
+                <option value="sk">sk - Slovak</option>
+                <option value="sk_SK">sk_SK - Slovak (Slovakia)</option>
+                <option value="sl">sl - Slovenian</option>
+                <option value="sl_SI">sl_SI - Slovenian (Slovenia)</option>
+                <option value="sq">sq - Albanian</option>
+                <option value="sq_AL">sq_AL - Albanian (Albania)</option>
+                <option value="sr">sr - Serbian</option>
+                <option value="sr__#Latn">sr__#Latn - Serbian (Latin)</option>
+                <option value="sr_BA"
+                  >sr_BA - Serbian (Bosnia and Herzegovina)</option
+                >
+                <option value="sr_BA_#Latn"
+                  >sr_BA_#Latn - Serbian (Latin,Bosnia and Herzegovina)</option
+                >
+                <option value="sr_CS"
+                  >sr_CS - Serbian (Serbia and Montenegro)</option
+                >
+                <option value="sr_ME">sr_ME - Serbian (Montenegro)</option>
+                <option value="sr_ME_#Latn"
+                  >sr_ME_#Latn - Serbian (Latin,Montenegro)</option
+                >
+                <option value="sr_RS">sr_RS - Serbian (Serbia)</option>
+                <option value="sr_RS_#Latn"
+                  >sr_RS_#Latn - Serbian (Latin,Serbia)</option
+                >
+                <option value="sv">sv - Swedish</option>
+                <option value="sv_SE">sv_SE - Swedish (Sweden)</option>
+                <option value="th">th - Thai</option>
+                <option value="th_TH">th_TH - Thai (Thailand)</option>
+                <option value="th_TH_TH_#u-nu-thai"
+                  >th_TH_TH_#u-nu-thai - Thai (Thailand,TH)</option
+                >
+                <option value="tr">tr - Turkish</option>
+                <option value="tr_TR">tr_TR - Turkish (Turkey)</option>
+                <option value="uk">uk - Ukrainian</option>
+                <option value="uk_UA">uk_UA - Ukrainian (Ukraine)</option>
+                <option value="vi">vi - Vietnamese</option>
+                <option value="vi_VN">vi_VN - Vietnamese (Vietnam)</option>
+                <option value="zh">zh - Chinese</option>
+                <option value="zh_CN">zh_CN - Chinese (China)</option>
+                <option value="zh_HK">zh_HK - Chinese (Hong Kong)</option>
+                <option value="zh_SG">zh_SG - Chinese (Singapore)</option>
+                <option value="zh_TW">zh_TW - Chinese (Taiwan)</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="waitTimeInSeconds">Ajax Actions</label>
+              <div class="input-group">
+                <input
+                  type="number"
+                  id="waitTimeInSeconds"
+                  class="form-control"
+                  placeholder="Wait time in secs"
+                />
+                <div class="input-group-append">
+                  <select
+                    name="waitAction"
+                    id="waitAction"
+                    class="form-control"
+                  >
+                    <option value="">Select Action</option>
+                    <option value="visible">VISIBLE</option>
+                    <option value="available">AVAILABLE</option>
+                    <option value="clickable">CLICKABLE</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">ID</span>
+                </div>
+                <input type="text" id="tagId" class="form-control" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input
+                      type="radio"
+                      id="selectedElement_tagId"
+                      name="selectedElement"
+                      value="tagId"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Tag</span>
+                </div>
+                <input type="text" id="tagName" class="form-control" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input
+                      type="radio"
+                      id="selectedElement_tagName"
+                      name="selectedElement"
+                      value="tagName"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Name</span>
+                </div>
+                <input type="text" id="name" class="form-control" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input
+                      type="radio"
+                      id="selectedElement_name"
+                      name="selectedElement"
+                      value="name"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">XPath</span>
+                </div>
+                <input type="text" id="xpath" class="form-control" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input
+                      type="radio"
+                      id="selectedElement_xpath"
+                      name="selectedElement"
+                      value="xpath"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">CSS</span>
+                </div>
+                <input type="text" id="cssPath" class="form-control" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input
+                      type="radio"
+                      id="selectedElement_cssPath"
+                      name="selectedElement"
+                      value="cssPath"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Class</span>
+                </div>
+                <input type="text" id="className" class="form-control" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input
+                      type="radio"
+                      id="selectedElement_className"
+                      name="selectedElement"
+                      value="className"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <button class="btn btn-primary" id="addElementBtn">
+                Add Element
+              </button>
+              <button
+                class="btn btn-primary"
+                id="addLocaleToElementBtn"
+                style="display: none;"
+              >
+                Add Element
+              </button>
+              <button class="btn btn-primary" id="updateElementBtn">
+                Update Element
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- END: Add Element Form -->
+
+      <section id="elementsListSection" class="row" style="margin-top: 80px;">
+        <ul id="elementsList"></ul>
+      </section>
+
+      <section id="localeListSection" class="row" style="margin-top: 80px;">
+        <ul id="localeList"></ul>
+      </section>
+
+      <!-- START: Import Json Form -->
+      <section id="importJsonSection" class="row" style="margin-top: 80px;">
+        <form>
+          <div class="form-row">
+            <div class="form-group col">
+              <div class="custom-file">
+                <input type="file" id="filePath" class="custom-file-input" />
+                <label for="filePath" class="custom-file-label"
+                  >Upload PageObject JSON</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="Page Object JSON">
+                <textarea
+                  name="pageObjectJson"
+                  id="pageObjectJson"
+                  cols="50"
+                  rows="7"
+                  class="form-control"
+                ></textarea>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <button id="importFromJsonBtn" class="btn btn-primary">
+                Import Page Object
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+      <!-- END: Import Json Form -->
+    </section>
+
+    <script src="./assets/jquery-3.4.1.slim.min.js"></script>
+    <script src="./assets/popper-1.16.0.min.js"></script>
+    <script src="./assets/bootstrap-4.4.1.min.js"></script>
+    <script src="./assets/pouchdb-7.1.1.min.js"></script>
+    <script src="./assets/mustache-3.2.0.min.js"></script>
+
+    <script type="text/javascript" src="./app.js"></script>
+    <script src="panel.js"></script>
+  </body>
+</html>
