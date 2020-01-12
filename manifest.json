@@ -1,7 +1,7 @@
 {
   "name": "Elementer",
-  "version": "1.0.0",
-  "description": "Elementer",
+  "version": "1.0.2",
+  "description": "A chrome devtools extension which helps in inspecting elements in the web page and generate page element JSON to support the SimpleSe selenium based Java framework",
   "author": "Vimalraj Selvam",
   "manifest_version": 2,
   "devtools_page": "devtools.html",
@@ -9,7 +9,6 @@
     "scripts": ["background.js"]
   },
   "permissions": [
-    "tabs",
     "http://*/*",
     "https://*/*",
     "file://*/*",
