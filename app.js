@@ -985,7 +985,7 @@
     labelLink.style.cursor = "pointer"
     labelLink.appendChild(
       document.createTextNode(
-        pageObject.elements[elementId].locale[localeId].name
+        `${pageObject.elements[elementId].locale[localeId].name} {${pageObject.elements[elementId].locale[localeId].locator}}`
       )
     )
     labelLink.addEventListener(
