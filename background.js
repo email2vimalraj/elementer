@@ -4,13 +4,20 @@ chrome.extension.onConnect.addListener(function(port) {
       // Attach a script to inspected page
       if (message.action === "script") {
         // chrome.tabs.executeScript(message.tabId, {file: "assets/inspector.js"});
-        chrome.tabs.executeScript(message.tabId, { file: message.content })
+        chrome.tabs.executeScript(message.tabId, {
+          file: message.content,
+          allFrames: true // fix for iframe
+        })
       } else if (message.action === "code") {
-        chrome.tabs.executeScript(message.tabId, { code: message.content })
+        chrome.tabs.executeScript(message.tabId, {
+          code: message.content,
+          allFrames: true // fix for iframe
+        })
       } else if (message.action === "clear-script") {
         alert("Injecting clear script")
         chrome.tabs.executeScript(message.tabId, {
-          code: "document.removeEventListener('mousemove', onMouseMove);"
+          code: "document.removeEventListener('mousemove', onMouseMove);",
+          allFrames: true // fix for iframe
         })
       }
     } else {
