@@ -348,34 +348,6 @@
           </div>
         </div>
 
-        <!-- <div class="container row mt-3 form-inline">
-          <div class="col-lg-6 form-group">
-            <label for="elementPageObjectName">Page Name</label>
-            <input
-              type="text"
-              id="elementPageObjectName"
-              class="form-control"
-              disabled
-            />
-          </div>
-
-          <div id="pageElementVariableDiv" class="col-lg-6 form-group mt-2">
-            <label for="elementPageObjectName" class="col-form-label"
-              >Element Name <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              id="pageElementName"
-              class="form-control"
-              aria-describedby="pageElementHelpBlock"
-            />
-            <small id="pageElementHelpBlock" class="text-muted"
-              >Variable should use camelCase. Should not be empty. No spaces
-              allowed.</small
-            >
-          </div>
-        </div> -->
-
         <form>
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -754,6 +726,46 @@
                       id="selectedElement_className"
                       name="selectedElement"
                       value="className"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Link Text</span>
+                </div>
+                <input type="text" id="linkText" class="form-control" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input
+                      type="radio"
+                      id="selectedElement_linkText"
+                      name="selectedElement"
+                      value="linkText"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Partial Link Text</span>
+                </div>
+                <input type="text" id="partialLinkText" class="form-control" />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <input
+                      type="radio"
+                      id="selectedElement_partialLinkText"
+                      name="selectedElement"
+                      value="partialLinkText"
                     />
                   </div>
                 </div>

@@ -2,10 +2,10 @@
   "use strict"
 
   // Comment the following line for DEV
-  // var manifest = chrome.runtime.getManifest()
-  var manifest = {
-    version: "1.2.0"
-  }
+  var manifest = chrome.runtime.getManifest()
+  // var manifest = {
+  //   version: "1.2.0"
+  // }
 
   // Un-comment the following line for DEV
   // var manifest = {version: "2.0.0"};
@@ -223,6 +223,8 @@
     var xpath = document.getElementById("xpath")
     var cssPath = document.getElementById("cssPath")
     var className = document.getElementById("className")
+    var linkText = document.getElementById("linkText")
+    var partialLinkText = document.getElementById("partialLinkText")
 
     db.get(pageObjectId.value, function(err, doc) {
       if (!err) {
@@ -245,6 +247,13 @@
             break
           case "name":
             selectedAttr = `${name.value}`
+            break
+          case "linkText":
+            selectedAttr = `linkText=${linkText.value}`
+            break
+          case "partialLinkText":
+            console.log(`partialLinkText=${partialLinkText.value}`)
+            selectedAttr = `partialLinkText=${partialLinkText.value}`
             break
         }
 
@@ -299,6 +308,8 @@
               xpath.value = ""
               cssPath.value = ""
               className.value = ""
+              linkText.value = ""
+              partialLinkText.value = ""
               document.getElementById("selectedElement_tagId").checked = true
               elementSuccessAlert.style.display = ""
 
@@ -499,6 +510,8 @@
     document.getElementById("xpath").value = ""
     document.getElementById("cssPath").value = ""
     document.getElementById("className").value = ""
+    document.getElementById("linkText").value = ""
+    document.getElementById("partialLinkText").value = ""
 
     document.getElementById("updateElementBtn").style.display = "none"
 
@@ -595,6 +608,8 @@
     var xpath = document.getElementById("xpath")
     var cssPath = document.getElementById("cssPath")
     var className = document.getElementById("className")
+    var linkText = document.getElementById("linkText")
+    var partialLinkText = document.getElementById("partialLinkText")
 
     db.get(pageObject._id, function(err, doc) {
       if (!err) {
@@ -638,6 +653,16 @@
             break
           case "name":
             doc.elements[elementId].locale[localeId].locator = `${name.value}`
+            break
+          case "linkText":
+            doc.elements[elementId].locale[
+              localeId
+            ].locator = `linkText=${linkText.value}`
+            break
+          case "partialLinkText":
+            doc.elements[elementId].locale[
+              localeId
+            ].locator = `partialLinkText=${partialLinkText.value}`
             break
         }
 
@@ -701,6 +726,9 @@
     document.getElementById("xpath").value = ""
     document.getElementById("cssPath").value = ""
     document.getElementById("className").value = ""
+    document.getElementById("linkText").value = ""
+    document.getElementById("partialLinkText").value = ""
+
     document.getElementById("selectedElement_tagId").checked = true
 
     document.getElementById("updateElementBtn").style.display = "none"
@@ -744,6 +772,9 @@
           var xpath = document.getElementById("xpath")
           var cssPath = document.getElementById("cssPath")
           var className = document.getElementById("className")
+          var linkText = document.getElementById("linkText")
+          var partialLinkText = document.getElementById("partialLinkText")
+
           var selectedElement = document.querySelector(
             'input[name = "selectedElement"]:checked'
           )
@@ -761,6 +792,12 @@
               break
             case "tagName":
               selectedAttr = `tagName=${tagName.value}`
+              break
+            case "linkText":
+              selectedAttr = `linkText=${linkText.value}`
+              break
+            case "partialLinkText":
+              selectedAttr = `partialLinkText=${partialLinkText.value}`
               break
             case "tagId":
               selectedAttr = `${tagId.value}`
@@ -808,6 +845,8 @@
                 tagId.value = ""
                 name.value = ""
                 xpath.value = ""
+                linkText.value = ""
+                partialLinkText.value = ""
                 cssPath.value = ""
                 className.value = ""
                 document.getElementById("selectedElement_tagId").checked = true
@@ -932,6 +971,9 @@
     document.getElementById("xpath").value = ""
     document.getElementById("cssPath").value = ""
     document.getElementById("className").value = ""
+    document.getElementById("linkText").value = ""
+    document.getElementById("partialLinkText").value = ""
+
     document.getElementById("selectedElement_tagId").checked = true
 
     var updateElementBtn = document.getElementById("updateElementBtn")
