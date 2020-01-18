@@ -9,7 +9,9 @@
   <body>
     <section class="container">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a id="brandName" class="navbar-brand" href="#"><img src="assets/favicon-32x32.png" alt="Elementer" /></a>
+        <a id="brandName" class="navbar-brand" href="#"
+          ><img src="assets/favicon-32x32.png" alt="Elementer"
+        /></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -390,12 +392,40 @@
               <label for="pageElementName"
                 >Element Name <small class="text-danger">*</small></label
               >
-              <input
-                type="text"
-                id="pageElementName"
-                class="form-control"
-                aria-describedby="pageElementHelpBlock"
-              />
+              <div class="input-group">
+                <div class="class input-group-prepend">
+                  <div class="input-group-text">
+                    <input type="checkbox" name="isList" id="isList" />&nbsp;Is
+                    List?
+                  </div>
+                </div>
+                <input
+                  type="text"
+                  id="pageElementName"
+                  class="form-control"
+                  aria-describedby="pageElementHelpBlock"
+                />
+                <div class="input-group-append">
+                  <select
+                    name="elementType"
+                    id="elementType"
+                    class="form-control"
+                  >
+                    <option value="">Select Element Type</option>
+                    <option value="generic">generic</option>
+                    <option value="button">button</option>
+                    <option value="checkbox">checkbox</option>
+                    <option value="form">form</option>
+                    <option value="image">image</option>
+                    <option value="label">label</option>
+                    <option value="link">link</option>
+                    <option value="radio">radio</option>
+                    <option value="select">select</option>
+                    <option value="text">text</option>
+                  </select>
+                </div>
+              </div>
+              <!-- <br /> -->
               <small id="pageElementHelpBlock" class="text-muted"
                 >Variable should use camelCase. Should not be empty. No spaces
                 allowed.</small

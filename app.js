@@ -2,10 +2,10 @@
   "use strict"
 
   // Comment the following line for DEV
-  var manifest = chrome.runtime.getManifest()
-  // var manifest = {
-  //   version: "1.2.0"
-  // }
+  // var manifest = chrome.runtime.getManifest()
+  var manifest = {
+    version: "1.2.0"
+  }
 
   // Un-comment the following line for DEV
   // var manifest = {version: "2.0.0"};
@@ -182,6 +182,8 @@
     console.log("Adding element")
     var pageObjectId = document.getElementById("elementPageObjectId")
     var pageElementName = document.getElementById("pageElementName")
+    var isListElement = document.getElementById("isList")
+    var elementType = document.getElementById("elementType")
     var pageElementVariableDiv = document.getElementById(
       "pageElementVariableDiv"
     )
@@ -198,15 +200,6 @@
       pageElementVariableDiv.className =
         pageElementVariableDiv.className + " has-error"
       return
-    } else {
-      // if (!isElementHtmlType(pageElementName.value)) {
-      //     pageElementVariableDiv.className = pageElementVariableDiv.className + " has-error";
-      //     document.getElementById('htmlElementErrorDiv').style.display = "";
-      //     return;
-      // } else {
-      document.getElementById("htmlElementErrorDiv").style.display = "none"
-      pageElementVariableDiv.className = "form-group col-lg-4"
-      // }
     }
 
     var selectedElement = document.querySelector(
@@ -257,6 +250,8 @@
 
         var updateDoc = {
           name: pageElementName.value,
+          list: isListElement.checked,
+          type: elementType.value === "" ? "generic" : elementType.value,
           locale: [
             {
               name: locale[locale.selectedIndex].value,
@@ -293,6 +288,8 @@
               $("#element-danger-alert").alert()
             } else {
               pageElementName.value = ""
+              isListElement.checked = false
+              elementType.value = ""
               waitTimeInSeconds.value = 0
               waitAction.selectedIndex = 0
               // locale.selectedIndex = 0;
@@ -394,14 +391,6 @@
     })
   }
 
-  function findElement(elements, propertyName) {
-    for (var i = 0; i < elements.length; i++) {
-      if (elements[i].objectId === propertyName) {
-        return elements[i]
-      }
-    }
-  }
-
   function elementsListButtonPressed(pageObject) {
     showSection(elementsListSection)
     setActiveNav(pageObjectListBtn)
@@ -493,15 +482,15 @@
     document.getElementById("elementPageObjectId").value = pageObject._id
     document.getElementById("elementPageObjectName").value = pageObject.name
     document.getElementById("pageElementName").value = ""
+    document.getElementById("isList").checked = false
+    document.getElementById("elementType").value = ""
     var locale = document.getElementById("locale")
     for (var i, j = 0; (i = locale.options[j]); j++) {
       if (i.value === pageObject.defaultLocale) {
         locale.selectedIndex = j
-        console.log(locale.selectedIndex)
         break
       }
     }
-    console.log(locale)
     document.getElementById("waitTimeInSeconds").value = 0
     document.getElementById("waitAction").selectedIndex = 0
     document.getElementById("tagName").value = ""
@@ -566,7 +555,8 @@
 
   function updateElementBtnPressed(pageObject, elementId, localeId) {
     var pageElementName = document.getElementById("pageElementName")
-    console.log(pageElementName.value)
+    var isListElement = document.getElementById("isList")
+    var elementType = document.getElementById("elementType")
     var pageElementVariableDiv = document.getElementById(
       "pageElementVariableDiv"
     )
@@ -583,16 +573,6 @@
       pageElementVariableDiv.className =
         pageElementVariableDiv.className + " has-error"
       return
-    } else {
-      //   if (!isElementHtmlType(pageElementName.value)) {
-      //     pageElementVariableDiv.className =
-      //       pageElementVariableDiv.className + " has-error";
-      //     document.getElementById("htmlElementErrorDiv").style.display = "";
-      //     return;
-      //   } else {
-      document.getElementById("htmlElementErrorDiv").style.display = "none"
-      pageElementVariableDiv.className = "form-group col-lg-4"
-      //   }
     }
 
     var selectedElement = document.querySelector(
@@ -619,6 +599,9 @@
     db.get(pageObject._id, function(err, doc) {
       if (!err) {
         doc.elements[elementId].name = pageElementName.value
+        doc.elements[elementId].list = isListElement.checked
+        doc.elements[elementId].type =
+          elementType.value === "" ? "generic" : elementType.value
         if (waitAction[waitAction.selectedIndex].value !== "") {
           doc.elements[elementId].wait.for = +waitTimeInSeconds.value
           doc.elements[elementId].wait.until =
@@ -658,8 +641,6 @@
             break
         }
 
-        console.log(doc.elements)
-
         db.put(
           {
             _id: doc._id,
@@ -696,6 +677,8 @@
     document.getElementById("elementPageObjectId").value = pageObject._id
     document.getElementById("elementPageObjectName").value = pageObject.name
     document.getElementById("pageElementName").value = element.name
+    document.getElementById("isList").checked = element.list
+    document.getElementById("elementType").value = element.type
     if (element.wait) {
       document.getElementById("waitTimeInSeconds").value = element.wait.for
     }
@@ -736,6 +719,8 @@
     db.get(pageObjectId.value, function(err, doc) {
       if (!err) {
         var pageElementName = document.getElementById("pageElementName")
+        var isListElement = document.getElementById("isList")
+        var elementType = document.getElementById("elementType")
         var pageElementVariableDiv = document.getElementById(
           "pageElementVariableDiv"
         )
@@ -750,7 +735,6 @@
           pageElementVariableDiv.className =
             pageElementVariableDiv.className + " has-error"
         } else {
-          pageElementVariableDiv.className = "form-group col-lg-4"
           var locale = document.getElementById("locale")
           var waitTimeInSeconds = document.getElementById("waitTimeInSeconds")
           var waitAction = document.getElementById("waitAction")
@@ -787,6 +771,8 @@
           }
 
           doc.elements[idX].name = pageElementName.value
+          doc.elements[idX].list = isListElement.checked
+          doc.elements[idX].type = elementType.value
 
           if (waitAction[waitAction.selectedIndex].value !== "") {
             doc.elements[idX].wait.for = +waitTimeInSeconds.value
@@ -916,6 +902,9 @@
     document.getElementById("elementPageObjectId").value = pageObject._id
     document.getElementById("elementPageObjectName").value = pageObject.name
     document.getElementById("pageElementName").value = element.name
+    document.getElementById("isList").checked = element.list
+    document.getElementById("elementType").value = element.type
+
     if (element.wait) {
       document.getElementById("waitTimeInSeconds").value = +element.wait.for
     }
