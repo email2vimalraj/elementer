@@ -1,6 +1,6 @@
 {
   "name": "Elementer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A browser extension which helps inspecting elements and generate page element JSON to support any selenium based Java framework",
   "author": "Vimalraj Selvam",
   "manifest_version": 2,
