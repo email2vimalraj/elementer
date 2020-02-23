@@ -1,0 +1,48 @@
+{
+  "name": "LoginPage",
+  "defaultLocale": "en",
+  "elements": [
+    {
+      "name": "txt_UserName",
+      "list": false,
+      "type": "text",
+      "locale": [
+        {
+          "name": "en",
+          "locator": "username"
+        }
+      ],
+      "wait": {
+        "until": "visible",
+        "for": 5
+      }
+    },
+    {
+      "name": "txt_Password",
+      "list": false,
+      "type": "text",
+      "locale": [
+        {
+          "name": "en",
+          "locator": "password"
+        }
+      ]
+    },
+    {
+      "name": "btn_Login",
+      "list": false,
+      "type": "button",
+      "locale": [
+        {
+          "name": "en",
+          "locator": "xpath=//*[@id='login']/button[1]"
+        }
+      ],
+      "wait": {
+        "until": "clickable",
+        "for": 5
+      }
+    }
+  ],
+  "elementerVersion": "1.0.3"
+}
