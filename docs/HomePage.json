@@ -1,0 +1,33 @@
+{
+  "name": "HomePage",
+  "defaultLocale": "en",
+  "elements": [
+    {
+      "name": "lbl_Heading1",
+      "list": false,
+      "type": "label",
+      "locale": [
+        {
+          "name": "en",
+          "locator": "xpath=//*[@id='content']/div[1]/h2[1]"
+        }
+      ],
+      "wait": {
+        "until": "visible",
+        "for": 5
+      }
+    },
+    {
+      "name": "btn_Logout",
+      "list": false,
+      "type": "button",
+      "locale": [
+        {
+          "name": "en",
+          "locator": "class=icon-2x icon-signout"
+        }
+      ]
+    }
+  ],
+  "elementerVersion": "1.0.3"
+}
